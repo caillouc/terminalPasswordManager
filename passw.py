@@ -114,7 +114,7 @@ def getTolerentKey(searchKey, dic):
         key = key.replace("-", "")
         if searchKey.lower() == key.lower():
             return [key]
-        elif searchKey in key:
+        elif searchKey.lower() in key.lower():
             ret.append(key)
     return ret
 
