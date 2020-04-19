@@ -17,8 +17,8 @@ idKey = "id"
 mailKey = "email"
 hintKey = "hint"
 remarkKey = "remark"
-saveFileName = ".save.json" #gitignore
-saltFileName = ".saveSalt"  #gitignore
+saveFileName = ".save.json"
+saltFileName = ".saveSalt"
 
 
 # Helper
