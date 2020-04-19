@@ -1,4 +1,4 @@
-# Terminal Password Manager {ignore=true}
+# Terminal Password Manager
 
 ## Description 
 
