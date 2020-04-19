@@ -17,8 +17,8 @@ idKey = "id"
 mailKey = "email"
 hintKey = "hint"
 remarkKey = "remark"
-saveFileName = ".save.json"
-saltFileName = ".saveSalt"
+saveFileName = "/Users/pierrecolson/caillou/.save.json"
+saltFileName = "/Users/pierrecolson/caillou/.saveSalt"
 
 
 # Helper
