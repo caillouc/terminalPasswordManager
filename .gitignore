@@ -1,0 +1,7 @@
+.vscode 
+.save.json
+.saveSalt
+.DS_Store
+*.json
+__pycache__/
+*.txt
