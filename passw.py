@@ -111,10 +111,10 @@ def getTolerentKey(searchKey, dic):
     """ Find all the keys that can fit to the one given by the user """
     ret = []
     for key in dic:
-        key = key.replace("-", "")
-        if searchKey.lower() == key.lower():
+        keyWithout = key.replace("-", "")
+        if searchKey.lower() == keyWithout.lower():
             return [key]
-        elif searchKey.lower() in key.lower():
+        elif searchKey.lower() in keyWithout.lower():
             ret.append(key)
     return ret
 
