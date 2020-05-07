@@ -266,16 +266,15 @@ def display(info, key, hint, displayHint):
         if displayHint:
             print("  =>  The password for " + str(key) +
                   " is : " + hint)
+        if (platform.system() == "Darwin"):
+            os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
+        elif (platform.system() == "Linux"):
+            os.system(
+                "echo '%s' | xclip -selection clipboard" % hint)
         else:
-            if (platform.system() == "Darwin"):
-                os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
-            elif (platform.system() == "Linux"):
-                os.system(
-                    "echo '%s' | xclip -selection clipboard" % hint)
-            else:
-                print("   ****   OS not supported   ****   ")
-                sys.exit(0)
-            os.system("python3 cleanPaste.py &")
+            print("   ****   OS not supported   ****   ")
+            sys.exit(0)
+        os.system("python3 cleanPaste.py &")
     if info[remarkKey]:
         print("  =>  The remark for " + str(key) + " is : " + info[remarkKey])
 
