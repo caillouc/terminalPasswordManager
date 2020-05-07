@@ -4,7 +4,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
-import time
+import platform
 import getpass
 import json
 import base64
@@ -267,7 +267,14 @@ def display(info, key, hint, displayHint):
             print("  =>  The password for " + str(key) +
                   " is : " + hint)
         else:
-            os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
+            if (platform.system() == "Darwin"):
+                os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
+            elif (platform.system() == "Linux"):
+                os.system(
+                    "echo '%s' | xclip -selection clipboard" % hint)
+            else:
+                print("   ****   OS not supported   ****   ")
+                sys.exit(0)
             os.system("python3 cleanPaste.py &")
     if info[remarkKey]:
         print("  =>  The remark for " + str(key) + " is : " + info[remarkKey])

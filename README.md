@@ -35,6 +35,20 @@ All the options are listed in the **How to use it** section.
 pip3 install cryptography
 ```
 
+If you are using a Linux System, you will also need to install xclip :
+
+On Ubuntu : 
+
+```szh
+sudo apt-get install xclip
+```
+
+On Arch :
+
+```zsh
+pacman -S xclip
+```
+
 * Then go in the folder of the project and run this command to initialise your password manager. This will ask you a password that will be used to encode your future data. It will also create two files `.save.json` and `.saveSalt`. 
 **Do not modify or lose those files, otherwise you will lose all your saved information** 
 
@@ -65,6 +79,8 @@ p (){
         builtin cd $DIR
 }
 ```
+
+Once it is done restart your terminal or run the folowing command : `source ~/.bashrc` or `source ~/.zshrc` . 
 
 ## How to use it
 
