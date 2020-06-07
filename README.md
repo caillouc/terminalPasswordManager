@@ -74,7 +74,7 @@ p (){
                 "see") python3 passw.py see "$2"     ;;
                 "delete") python3 passw.py delete    ;;
                 "edit") python3 passw.py edit        ;;
-                *) echo "Unvalid argument"           ;;
+                *) echo "Unvalid argument (add, get, see, delete, edit)"           ;;
         esac
         builtin cd $DIR
 }
