@@ -61,23 +61,11 @@ python3 passw.py init
 
 > For more safety you can also keep in a safe place a copy of `.saveSalt` 
 
-* In order to be usable from the terminal, add this following lines in your `.bashrc` or `.zshrc` file. You need to write the path to this project in `"PATH/TO/PROJECT"` (can be found by running `pwd` in a terminal while in the project folder).
+* In order to be usable from the terminal, add the following line in your `.bashrc` or `.zshrc` file. You need to write the path to this project in `"PATH/TO/PROJECT"` (can be found by running `pwd` in a terminal while in the project folder).
 
 ```zsh
 # password manager shortcut
-p (){
-        DIR="`pwd`"
-        builtin cd "/PATH/TO/PROJECT"
-        case $1 in
-                "add") python3 passw.py add          ;;
-                "get") python3 passw.py get "$2"     ;;
-                "see") python3 passw.py see "$2"     ;;
-                "delete") python3 passw.py delete    ;;
-                "edit") python3 passw.py edit        ;;
-                *) echo "Unvalid argument"           ;;
-        esac
-        builtin cd $DIR
-}
+source "/PATH/TO/PROJECT/p_command"
 ```
 
 Once it is done restart your terminal or run the folowing command : `source ~/.bashrc` or `source ~/.zshrc` . 
