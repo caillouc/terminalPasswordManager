@@ -65,7 +65,19 @@ python3 passw.py init
 
 ```zsh
 # password manager shortcut
-source "/PATH/TO/PROJECT/p_command"
+p (){
+        DIR="`pwd`"
+        builtin cd "/PATH/TO/PROJECT"
+        case $1 in
+                "add") python3 passw.py add          ;;
+                "get") python3 passw.py get "$2"     ;;
+                "see") python3 passw.py see "$2"     ;;
+                "delete") python3 passw.py delete    ;;
+                "edit") python3 passw.py edit        ;;
+                *) echo "Unvalid argument (add, get, see, delete, edit)"           ;;
+        esac
+        builtin cd $DIR
+}
 ```
 
 Once it is done restart your terminal or run the folowing command : `source ~/.bashrc` or `source ~/.zshrc` . 
