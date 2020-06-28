@@ -2,11 +2,11 @@ p (){
         DIR="`pwd`"
         builtin cd "/PATH/TO/PROJECT"
         case $1 in
-                "add") python3 passw.py add          ;;
-                "get") python3 passw.py get "$2"     ;;
-                "see") python3 passw.py see "$2"     ;;
-                "delete") python3 passw.py delete    ;;
-                "edit") python3 passw.py edit        ;;
+                "add") python3 passw.py add "$2"         ;;
+                "get") python3 passw.py get "$2"         ;;
+                "see") python3 passw.py see "$2"         ;;
+                "delete") python3 passw.py delete "$2"   ;;
+                "edit") python3 passw.py edit "$2"       ;;
                 *) echo "Unvalid argument (add, get, see, delete or edit)"           ;;
         esac
         builtin cd $DIR
