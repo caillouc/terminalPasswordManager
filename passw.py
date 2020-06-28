@@ -172,10 +172,11 @@ def initEncodingPassword():
 
 # ADD
 
-def userAdd():
+def userAdd(key):
     """ Prepare to add new Password, and ask the user all infos """
-    print("\n __ Enter the new key __")
-    key = askField(False)
+    if (key == ""):
+        print("\n __ Enter the new key __")
+        key = askField(False)
     if key == "check":
         print("   ****   Can't add a key named check   ****   ")
         sys.exit(0)
@@ -281,10 +282,11 @@ def display(info, key, hint, displayHint, isEdditing):
         print("  =>  The remark for " + str(key) + " is : " + info[remarkKey])
 
 
-def userDelete():
+def userDelete(key):
     """ Allow the user to delete a key """
-    print("\n __ Enter the key you want to delete __")
-    key = askField(False)
+    if (key == ""):
+        print("\n __ Enter the key you want to delete __")
+        key = askField(False)
     dic = loadSave()
     possibleKey = getTolerentKey(key, dic)
     hintInfo = chooseKeyAndGetInfo(possibleKey, dic)
@@ -304,10 +306,11 @@ def userDelete():
 
 # Edit
 
-def userEdit():
+def userEdit(key):
     """ Allow the user to edit somme of a key """
-    print("\n __ Enter the key you want to edit __")
-    key = askField(False)
+    if (key == ""):
+        print("\n __ Enter the key you want to edit __")
+        key = askField(False)
     dic = loadSave()
     possibleKey = getTolerentKey(key, dic)
     hintInfo = chooseKeyAndGetInfo(possibleKey, dic)
@@ -359,6 +362,7 @@ def userEdit():
 
 def main():
     """ Main """
+    threeArgs = len(sys.argv) == 3
     if len(sys.argv) > 1:
         if sys.argv[1] == "init":
             init()
@@ -366,18 +370,27 @@ def main():
             print("   ****   Can't find all needed files (save and salt)   ****   ")
             sys.exit(0)
         elif sys.argv[1] == "add":
-            userAdd()
+            if threeArgs:
+                userAdd(sys.argv[2])
+            else:
+                userAdd("")
         elif sys.argv[1] == "get" or sys.argv[1] == "see":
-            if len(sys.argv) != 3:
+            if not threeArgs:
                 print(
                     "   ****   Not the right number of argument (get key) or (see key)   ****   ")
                 sys.exit(0)
             else:
                 userGet(sys.argv[2], sys.argv[1] == "see")
         elif sys.argv[1] == "delete":
-            userDelete()
+            if threeArgs:
+                userDelete(sys.argv[2])
+            else:
+                userDelete("")
         elif sys.argv[1] == "edit":
-            userEdit()
+            if threeArgs:
+                userEdit(sys.argv[2])
+            else:
+                userEdit("")
         else:
             print(
                 "   ****   Invalid argument try {init, add, get, see, or remove}   ****   ")
