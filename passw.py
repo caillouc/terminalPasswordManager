@@ -225,7 +225,7 @@ def userGet(key, displayHint):
     passwordByte = askPassword().encode()
     hint = decrypt(hintInfo[0][hintKey].encode(),
                    passwordByte).decode('utf8')
-    display(hintInfo[0], hintInfo[1], hint, displayHint)
+    display(hintInfo[0], hintInfo[1], hint, displayHint, False)
 
 
 def chooseKeyAndGetInfo(possibleKey, dic):
@@ -255,7 +255,7 @@ def chooseKeyAndGetInfo(possibleKey, dic):
                 print("  ***  Enter a valid number  ***  ")
 
 
-def display(info, key, hint, displayHint):
+def display(info, key, hint, displayHint, isEdditing):
     """ Display all the info for a given key """
     print()
     if info[idKey]:
@@ -266,9 +266,9 @@ def display(info, key, hint, displayHint):
         if displayHint:
             print("  =>  The password for " + str(key) +
                   " is : " + hint)
-        if (platform.system() == "Darwin"):
+        if (platform.system() == "Darwin" and not isEdditing):
             os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
-        elif (platform.system() == "Linux"):
+        elif (platform.system() == "Linux" and not isEdditing):
             os.system(
                 "echo '%s' | xclip -selection clipboard" % hint)
         else:
@@ -292,7 +292,7 @@ def userDelete():
     passwordByte = askPassword().encode()
     hint = decrypt(hintInfo[0][hintKey].encode(),
                    passwordByte).decode('utf8')
-    display(hintInfo[0], hintInfo[1], hint, True)
+    display(hintInfo[0], hintInfo[1], hint, True, False)
     print("\n ** To confirm the supression re-enter your password ** ")
     askPassword()
     del dic[hintInfo[1]]
@@ -315,7 +315,7 @@ def userEdit():
     passwordByte = askPassword().encode()
     hint = decrypt(hintInfo[0][hintKey].encode(),
                    passwordByte).decode('utf8')
-    display(hintInfo[0], hintInfo[1], hint, True)
+    display(hintInfo[0], hintInfo[1], hint, True, True)
     print("\n --- Which field do you want to edit ? --- ")
     print(" 0 - : To quit the programm")
     print(" 1 - : The ID")
