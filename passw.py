@@ -266,11 +266,13 @@ def display(info, key, hint, displayHint, isEdditing):
         if displayHint:
             print("  =>  The password for " + str(key) +
                   " is : " + hint)
-        if (platform.system() == "Darwin" and not isEdditing):
-            os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
-        elif (platform.system() == "Linux" and not isEdditing):
-            os.system(
-                "echo '%s' | xclip -selection clipboard" % hint)
+        if (platform.system() == "Darwin"):
+            if (not isEdditing):
+                os.system("echo '%s' | tr -d '\n' | pbcopy" % hint)
+        elif (platform.system() == "Linux"):
+            if (not isEdditing):
+                os.system(
+                    "echo '%s' | xclip -selection clipboard" % hint)
         else:
             print("   ****   OS not supported   ****   ")
             sys.exit(0)
